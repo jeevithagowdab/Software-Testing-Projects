@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<!--
+  parallel="classes" runs LoginTest, ProductSearchTest, CartTest and
+  CheckoutTest concurrently, each in its own thread with its own
+  WebDriver instance (see DriverManager's ThreadLocal). This is what
+  cuts total execution time on the full regression run.
+-->
+<suite name="EcommerceAutomationSuite" parallel="classes" thread-count="4" verbose="1">
+
+    <!-- Full regression run: every test tagged "regression" -->
+    <test name="RegressionSuite">
+        <groups>
+            <run>
+                <include name="regression"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="tests.LoginTest"/>
+            <class name="tests.ProductSearchTest"/>
+            <class name="tests.CartTest"/>
+            <class name="tests.CheckoutTest"/>
+        </classes>
+    </test>
+
+</suite>
